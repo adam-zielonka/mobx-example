@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx'
 
-class CounterStore {
+export class CounterStore {
   value = 0
 
   constructor() {
@@ -28,7 +28,27 @@ class CounterStore {
   }
 }
 
-export const counter = new CounterStore()
+export class Store {
+  counters: CounterStore[] = [new CounterStore()]
 
-declare global { interface Window { counter: CounterStore; }}
-window.counter = counter
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  get isTooMatchCounters(): boolean {
+    return this.counters.length < 4
+  }
+
+  addCounter = (): void => {
+    if (this.isTooMatchCounters) this.counters.push(new CounterStore())
+  }
+
+  deleteCounter = (counter: CounterStore): void => {
+    this.counters = this.counters.filter(c => c !== counter)
+  }
+}
+
+export const store = new Store()
+
+declare global { interface Window { store: Store; }}
+window.store = store
