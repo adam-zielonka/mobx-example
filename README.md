@@ -1,46 +1,95 @@
-# Getting Started with Create React App
+# Mobx example
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project exist to show my friends that using Mobx is easy.
 
-## Available Scripts
+Demo: [mobx-example.adamzielonka.pro](https://mobx-example.adamzielonka.pro/)
 
-In the project directory, you can run:
+## How to use mobx
 
-### `yarn start`
+You can find more in documentation [mobx.js.org/react-integration.html](https://mobx.js.org/react-integration.html)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## How I use mobx
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Installation
 
-### `yarn test`
+Firstly I do is adding mobx and mobx-react-lite to my project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+$ yarn add mobx mobx-react-lite
+```
 
-### `yarn build`
+### Create main store
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Next I create store that will be contain all stores. If I have a lot of store classes, I create main store in `./src/store/Store.ts`, if not I just create file in src folder: `./src/Store.ts`:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```ts
+import { makeAutoObservable } from 'mobx'
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+export class Store {
+  constructor() {
+    makeAutoObservable(this)
+  }
+}
 
-### `yarn eject`
+export const store = new Store()
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I also make this store visible in browser by adding this to lines to end of main store file:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```ts
+declare global { interface Window { store: Store; }}
+window.store = store
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Add some fields, actions and computed value
 
-## Learn More
+An empty store is useless so I filled it with a few things:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```ts
+import { makeAutoObservable } from 'mobx'
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+export class Store {
+  counter = 0 // I am field
+
+  constructor() {
+    makeAutoObservable(this)
+  }
+
+  // I am computed value
+  get doubleCounter(): number {
+    return counter * 2
+  }
+
+  // I am action
+  counterUp = (): void => {
+    this.counter += 1
+  }
+}
+```
+
+### Use store in react
+
+```tsx
+import React from 'react'
+import { observer } from 'mobx-react-lite'
+import { store } from './Store'
+
+const App = (): JSX.Element => {
+  const { counter, doubleCounter, counterUp } = store
+
+  return <div className='app'>
+    <p>Counter: {counter}</p>
+    <p>Double counter: {doubleCounter}</p>
+    <p><button onClick={() => counterUp()} >+1</button></p>
+  </div>
+}
+
+// App will be re rendered if counter or doubleCounter change
+export default observer(App)
+
+```
+
+### Enjoying a working application
+
+The best part of creating a working application is that make me happy.
