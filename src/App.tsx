@@ -3,11 +3,11 @@ import React from 'react'
 import { CounterStore, store } from './Store'
 
 const Counter = observer(({ counter, onDelete }:{ counter: CounterStore, onDelete: () => void }): JSX.Element => {
-  const { value, minus100, minusOne, reset, addOne, add100 } = counter
+  const { value, minus100, minusOne, reset, addOne, add100, add } = counter
 
   return <div className='counter'>
     <span>
-      <span>{value}</span>
+      <input value={value} onChange={(e) => add(e.target.value)}/>
       <button onClick={() => onDelete()} >X</button>
     </span>
     <button onClick={() => minus100()} >-100</button>

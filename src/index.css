@@ -4,6 +4,10 @@ body {
   height: 100vh;
 }
 
+input {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
 #root {
   height: 100vh;
   display: grid;
@@ -44,10 +48,24 @@ body {
 
   display: grid;
   grid-template-columns: 40px 1fr 40px;
+  align-items: center;
 }
 
-.counter > span > span {
+.counter > span > span, .counter > span > input {
   grid-column: 2;
+}
+
+.counter > span > input {
+  border: none;
+  background: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  font-size: 30px;
+  color: green;
+  width: 250px;
+  border: none;
+  outline: none;
 }
 
 

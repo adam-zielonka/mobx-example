@@ -26,6 +26,11 @@ export class CounterStore {
   reset = (): void => {
     this.value = 0
   }
+
+  add = (value: string): number => {
+    if (!isNaN(+value)) this.value = +value
+    return this.value
+  }
 }
 
 export class Store {
