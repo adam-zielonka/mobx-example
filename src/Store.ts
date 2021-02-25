@@ -41,7 +41,7 @@ export class Store {
   }
 
   get isTooMatchCounters(): boolean {
-    return this.counters.length < 4
+    return this.counters.length > 3
   }
 
   get sum(): number {
@@ -49,7 +49,7 @@ export class Store {
   }
 
   addCounter = (): void => {
-    if (this.isTooMatchCounters) this.counters.push(new CounterStore())
+    if (!this.isTooMatchCounters) this.counters.push(new CounterStore())
   }
 
   deleteCounter = (counter: CounterStore): void => {

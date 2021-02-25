@@ -22,11 +22,12 @@ const App = (): JSX.Element => {
   const { counters, addCounter, isTooMatchCounters, deleteCounter, sum } = store
 
   return <div className='app'>
-    <div className='all'>{sum}</div>
+    {/* <div className='all'>{sum}</div> */}
+    <div className='all counter'><span><span>{sum}</span></span></div>
     {counters.map((counter, i) => <Counter key={i} counter={counter} 
       onDelete={() => deleteCounter(counter)}
     />)}
-    {isTooMatchCounters && <button onClick={() => addCounter()}>+</button>}
+    {!isTooMatchCounters && <button onClick={() => addCounter()}>+</button>}
   </div>
 }
 export default observer(App)
