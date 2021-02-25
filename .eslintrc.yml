@@ -1,0 +1,61 @@
+env:
+  browser: true
+  es2020: true
+extends:
+  - 'eslint:recommended'
+  - 'plugin:react/recommended'
+  - 'plugin:@typescript-eslint/eslint-recommended'
+  - 'plugin:@typescript-eslint/recommended'
+parser: '@typescript-eslint/parser'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 11
+  sourceType: module
+settings:
+  react:
+    version: detect
+plugins:
+  - react
+  - react-hooks
+  - '@typescript-eslint'
+rules:
+  indent:
+    - error
+    - 2
+  linebreak-style:
+    - error
+    - unix
+  quotes:
+    - error
+    - single
+  semi:
+    - error
+    - never
+  eol-last:
+    - error
+    - always
+  arrow-spacing: error
+  eqeqeq: error
+  handle-callback-err: error
+  keyword-spacing: error
+  space-before-function-paren:
+    - error
+    - anonymous: always
+      named: never
+      asyncArrow: always
+  no-warning-comments:
+    - warn
+    - terms:
+      - todo
+      - fixme
+      - any other term
+      location: anywhere
+  react-hooks/rules-of-hooks: error
+  react-hooks/exhaustive-deps: warn
+  max-len: 
+    - error
+    - code: 120
+
+  
+
