@@ -19,9 +19,10 @@ const Counter = observer(({ counter, onDelete }:{ counter: CounterStore, onDelet
 })
 
 const App = (): JSX.Element => {
-  const { counters, addCounter, isTooMatchCounters, deleteCounter } = store
+  const { counters, addCounter, isTooMatchCounters, deleteCounter, sum } = store
 
   return <div className='app'>
+    <div className='all'>{sum}</div>
     {counters.map((counter, i) => <Counter key={i} counter={counter} 
       onDelete={() => deleteCounter(counter)}
     />)}

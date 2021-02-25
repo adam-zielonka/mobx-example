@@ -39,6 +39,10 @@ export class Store {
     return this.counters.length < 4
   }
 
+  get sum(): number {
+    return this.counters.reduce((p, c) => p + c.value, 0)
+  }
+
   addCounter = (): void => {
     if (this.isTooMatchCounters) this.counters.push(new CounterStore())
   }
