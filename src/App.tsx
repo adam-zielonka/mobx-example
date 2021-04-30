@@ -28,6 +28,11 @@ const App = (): JSX.Element => {
       onDelete={() => deleteCounter(counter)}
     />)}
     {!isTooMatchCounters && <button onClick={() => addCounter()}>+</button>}
+    <footer>
+      Source code: <a href='https://gitlab.com/adam-zielonka-pro/mobx-example'>
+        https://gitlab.com/adam-zielonka-pro/mobx-example
+      </a>
+    </footer>
   </div>
 }
 export default observer(App)
