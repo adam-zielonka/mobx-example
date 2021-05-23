@@ -40,8 +40,8 @@ export class Store {
     makeAutoObservable(this)
   }
 
-  get isTooMatchCounters(): boolean {
-    return this.counters.length > 3
+  get canAddMoreCounters(): boolean {
+    return this.counters.length < 4
   }
 
   get sum(): number {
@@ -49,7 +49,7 @@ export class Store {
   }
 
   addCounter = (): void => {
-    if (!this.isTooMatchCounters) this.counters.push(new CounterStore())
+    if (this.canAddMoreCounters) this.counters.push(new CounterStore())
   }
 
   deleteCounter = (counter: CounterStore): void => {

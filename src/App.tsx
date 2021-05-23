@@ -19,7 +19,7 @@ const Counter = observer(({ counter, onDelete }:{ counter: CounterStore, onDelet
 })
 
 const App = (): JSX.Element => {
-  const { counters, addCounter, isTooMatchCounters, deleteCounter, sum } = store
+  const { counters, addCounter, canAddMoreCounters, deleteCounter, sum } = store
 
   return <div className='app'>
     {/* <div className='all'>{sum}</div> */}
@@ -27,7 +27,7 @@ const App = (): JSX.Element => {
     {counters.map((counter, i) => <Counter key={i} counter={counter} 
       onDelete={() => deleteCounter(counter)}
     />)}
-    {!isTooMatchCounters && <button onClick={() => addCounter()}>+</button>}
+    {canAddMoreCounters && <button onClick={() => addCounter()}>+</button>}
     <footer>
       Source code: <a href='https://gitlab.com/adam-zielonka-pro/mobx-example'>
         https://gitlab.com/adam-zielonka-pro/mobx-example

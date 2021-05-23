@@ -67,39 +67,39 @@ describe('Store', () => {
   test('new store', () => {
     const store = new Store()
     expect(store.counters.length).toBe(1)
-    expect(store.isTooMatchCounters).toBe(false)
+    expect(store.canAddMoreCounters).toBe(true)
     expect(store.sum).toBe(0)
   })
 
   it('add and delete counter', () => {
     const store = new Store()
     expect(store.counters.length).toBe(1)
-    expect(store.isTooMatchCounters).toBe(false)
+    expect(store.canAddMoreCounters).toBe(true)
     expect(store.sum).toBe(0)
 
     store.addCounter()
     expect(store.counters.length).toBe(2)
-    expect(store.isTooMatchCounters).toBe(false)
+    expect(store.canAddMoreCounters).toBe(true)
     expect(store.sum).toBe(0)
 
     store.addCounter()
     expect(store.counters.length).toBe(3)
-    expect(store.isTooMatchCounters).toBe(false)
+    expect(store.canAddMoreCounters).toBe(true)
     expect(store.sum).toBe(0)
 
     store.addCounter()
     expect(store.counters.length).toBe(4)
-    expect(store.isTooMatchCounters).toBe(true)
+    expect(store.canAddMoreCounters).toBe(false)
     expect(store.sum).toBe(0)
 
     store.addCounter()
     expect(store.counters.length).toBe(4)
-    expect(store.isTooMatchCounters).toBe(true)
+    expect(store.canAddMoreCounters).toBe(false)
     expect(store.sum).toBe(0)
 
     store.deleteCounter(store.counters[0])
     expect(store.counters.length).toBe(3)
-    expect(store.isTooMatchCounters).toBe(false)
+    expect(store.canAddMoreCounters).toBe(true)
     expect(store.sum).toBe(0)
   })
 
