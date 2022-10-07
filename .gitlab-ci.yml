@@ -1,4 +1,4 @@
-image: node:14.13.1
+image: node:14.20.1
 
 stages:
 - build
@@ -16,7 +16,9 @@ test:
   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
   artifacts:
     reports:
-      cobertura: coverage/cobertura-coverage.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage/cobertura-coverage.xml
       junit: junit.xml
 
 lint:
@@ -61,4 +63,4 @@ pages:
     - job: build
       artifacts: true
   only:
-    - master
+    - main
