@@ -1,4 +1,4 @@
-import { makeAutoObservable, reaction } from 'mobx'
+import { autorun, makeAutoObservable, reaction } from 'mobx'
 
 export class CounterStore {
   constructor(public value = 0) {
@@ -66,12 +66,16 @@ export class Store {
 
 export const store = new Store()
 const urlParams = new URLSearchParams(window.location.search)
-store.fromString(urlParams.get('value') || '')
+store.fromString(urlParams.get('value') || localStorage.getItem('store') || '')
 
 reaction(() => store.toString, (value) => {
   const urlParams = new URLSearchParams(window.location.search)
   urlParams.set('value', value)
   window.history.replaceState({}, '', `?${urlParams.toString()}`)
+})
+
+autorun(() => {
+  localStorage.setItem('store', store.toString)
 })
 
 declare global { interface Window { store: Store; }}
