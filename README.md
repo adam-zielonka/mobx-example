@@ -15,7 +15,7 @@ You can find more in documentation [mobx.js.org/react-integration.html](https://
 Firstly I do is adding mobx and mobx-react-lite to my project
 
 ```bash
-$ yarn add mobx mobx-react-lite
+$ pnpm add mobx mobx-react-lite
 ```
 
 ### Create main store
