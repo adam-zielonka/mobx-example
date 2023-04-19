@@ -8,6 +8,6 @@ export default defineConfig({
     sourcemap: true,
   },
   test: {
-    environment: 'happy-dom'
+    environment: "happy-dom",
   }
 });
