@@ -13,7 +13,6 @@
     "lint-junit": "eslint --ext .js,.jsx,.ts,.tsx ./src -f junit > junit.xml"
   },
   "dependencies": {
-    "happy-dom": "^9.8.2",
     "mobx": "^6.9.0",
     "mobx-react-lite": "^3.4.3",
     "react": "^18.2.0",
@@ -27,7 +26,7 @@
     "@vitest/coverage-c8": "^0.30.1",
     "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "happy-dom": "^9.8.2",
     "typescript": "^4.9.3",
     "vite": "^4.2.0",
     "vitest": "^0.30.1"
