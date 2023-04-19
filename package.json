@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "test-coverage": "pnpm vitest run --coverage --reporter=default --reporter=junit --outputFile.junit=./tests-junit.xml",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint-junit": "eslint --ext .js,.jsx,.ts,.tsx . -f junit > junit.xml"
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
+    "lint-junit": "eslint --ext .js,.jsx,.ts,.tsx ./src -f junit > junit.xml"
   },
   "dependencies": {
     "happy-dom": "^9.8.2",
