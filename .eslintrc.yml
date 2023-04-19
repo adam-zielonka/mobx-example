@@ -1,26 +1,25 @@
 env:
   browser: true
-  es2020: true
+  es2021: true
 extends:
-  - 'eslint:recommended'
-  - 'plugin:react/recommended'
-  - 'plugin:@typescript-eslint/eslint-recommended'
-  - 'plugin:@typescript-eslint/recommended'
+  - eslint:recommended
+  - plugin:react/recommended
+  - plugin:@typescript-eslint/recommended
+  - plugin:react/jsx-runtime
+overrides: []
 parser: '@typescript-eslint/parser'
 parserOptions:
-  ecmaFeatures:
-    jsx: true
-  ecmaVersion: 11
+  ecmaVersion: latest
   sourceType: module
+plugins:
+  - react
+  - '@typescript-eslint'
 settings:
   react:
     version: detect
-plugins:
-  - react
-  - react-hooks
-  - '@typescript-eslint'
 rules:
-  indent:
+  indent: off
+  "@typescript-eslint/indent": 
     - error
     - 2
   linebreak-style:
@@ -28,34 +27,13 @@ rules:
     - unix
   quotes:
     - error
-    - single
+    - double
   semi:
     - error
-    - never
-  eol-last:
-    - error
     - always
-  arrow-spacing: error
-  eqeqeq: error
-  handle-callback-err: error
-  keyword-spacing: error
-  space-before-function-paren:
+  max-len:
     - error
-    - anonymous: always
-      named: never
-      asyncArrow: always
-  no-warning-comments:
-    - warn
-    - terms:
-      - todo
-      - fixme
-      - any other term
-      location: anywhere
-  react-hooks/rules-of-hooks: error
-  react-hooks/exhaustive-deps: warn
-  max-len: 
+    - 120
+  jsx-quotes:
     - error
-    - code: 120
-
-  
-
+    - prefer-double
