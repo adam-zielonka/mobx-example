@@ -1,4 +1,4 @@
-import { autorun, makeAutoObservable, reaction } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 export class CounterStore {
   constructor(public value = 0) {
@@ -43,18 +43,6 @@ export class Store {
     return this.counters.length < 4;
   }
 
-  get sum(): number {
-    return this.counters.reduce((p, c) => p + c.value, 0);
-  }
-
-  get toString(): string {
-    return this.counters.map(c => c.value).join(";");
-  }
-
-  fromString(value: string): void {
-    this.counters = value.split(";").map(v => !isNaN(+v) ? new CounterStore(+v) : new CounterStore());
-  }
-
   addCounter = (): void => {
     if (this.canAddMoreCounters) this.counters.push(new CounterStore());
   };
@@ -65,18 +53,3 @@ export class Store {
 }
 
 export const store = new Store();
-const urlParams = new URLSearchParams(window.location.search);
-store.fromString(urlParams.get("value") || localStorage.getItem("store") || "");
-
-reaction(() => store.toString, (value) => {
-  const urlParams = new URLSearchParams(window.location.search);
-  urlParams.set("value", value);
-  window.history.replaceState({}, "", `?${urlParams.toString()}`);
-});
-
-autorun(() => {
-  localStorage.setItem("store", store.toString);
-});
-
-declare global { interface Window { store: Store; }}
-window.store = store;
