@@ -1,37 +1,34 @@
-import { observer } from "mobx-react-lite";
-import { CounterStore, store } from "./Store";
+import { store, CounterStore } from './Store';
+import { observer } from 'mobx-react-lite';
 
-const Counter = observer(({ counter, onDelete }:{ counter: CounterStore, onDelete: () => void }): JSX.Element => {
-  const { value, minus100, minusOne, reset, addOne, add100, add } = counter;
+const Counter = observer(({ counter }: { counter: CounterStore }) => {
+  const { value, add, reset } = counter;
 
-  return <div className="counter">
-    <span>
-      <input value={value} onChange={(e) => add(e.target.value)}/>
-      <button onClick={() => onDelete()} >X</button>
-    </span>
-    <button onClick={() => minus100()} >-100</button>
-    <button onClick={() => minusOne()} >-1</button>
-    <button onClick={() => reset()} >0</button>
-    <button onClick={() => addOne()} >+1</button>
-    <button onClick={() => add100()} >+100</button>
-  </div>;
+  return (
+    <div className="counter">
+      <span>
+        <span>{value}</span>
+      </span>
+      <button onClick={() => add(100)}>-100</button>
+      <button onClick={() => add(-1)}>-1</button>
+      <button onClick={() => reset()}>0</button>
+      <button onClick={() => add(+1)}>+1</button>
+      <button onClick={() => add(+100)}>+100</button>
+    </div>
+  );
 });
 
-const App = (): JSX.Element => {
-  const { counters, addCounter, canAddMoreCounters, deleteCounter, sum } = store;
+function App() {
+  const { counters, addCounter } = store;
 
-  return <div className="app">
-    {/* <div className='all'>{sum}</div> */}
-    <div className="all counter"><span><span>{sum}</span></span></div>
-    {counters.map((counter, i) => <Counter key={i} counter={counter} 
-      onDelete={() => deleteCounter(counter)}
-    />)}
-    {canAddMoreCounters && <button onClick={() => addCounter()}>+</button>}
-    <footer>
-      Source code: <a href="https://github.com/adam-zielonka/mobx-example">
-          https://github.com/adam-zielonka/mobx-example
-      </a>
-    </footer>
-  </div>;
-};
+  return (
+    <div className="app">
+      {counters.map((counter, i) => (
+        <Counter key={i} counter={counter} />
+      ))}
+      <button onClick={addCounter}>+</button>
+    </div>
+  );
+}
+
 export default observer(App);
