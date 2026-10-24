@@ -93,3 +93,7 @@ export default observer(App)
 ### Enjoying a working application
 
 The best part of creating a working application is that make me happy.
+
+## Development
+
+See [DEVELOPMENT.md](DEVELOPMENT.md) for the current runtime, builds and checks.
