@@ -29,7 +29,7 @@ const App = (): JSX.Element => {
     {canAddMoreCounters && <button onClick={() => addCounter()}>+</button>}
     <footer>
       Source code: <a href="https://github.com/adam-zielonka/mobx-example">
-          https://github.com/adam-zielonka/mobx-example
+        https://github.com/adam-zielonka/mobx-example
       </a>
     </footer>
   </div>;

@@ -14,12 +14,13 @@ parserOptions:
 plugins:
   - react
   - '@typescript-eslint'
+  - '@stylistic/ts'
 settings:
   react:
     version: detect
 rules:
   indent: off
-  "@typescript-eslint/indent": 
+  "@stylistic/ts/indent":
     - error
     - 2
   linebreak-style:
