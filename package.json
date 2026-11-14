@@ -25,13 +25,13 @@
     "@typescript-eslint/eslint-plugin": "^8.72.1",
     "@typescript-eslint/parser": "^8.72.1",
     "@vitejs/plugin-react-swc": "^4.3.3",
-    "@vitest/coverage-v8": "^5.0.5",
+    "@vitest/coverage-v8": "^5.1.0",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.5",
     "happy-dom": "^21.0.4",
     "typescript": "^4.9.5",
-    "vite": "^8.3.5",
-    "vitest": "^5.0.5"
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
   },
   "packageManager": "pnpm@12.14.0",
   "engines": {
