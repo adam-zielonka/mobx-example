@@ -2,7 +2,7 @@
 
 This project exist to show my friends that using Mobx is easy.
 
-Demo: [mobx-example.adamzielonka.pro](https://mobx-example.adamzielonka.pro/)
+Demo: [GitHub Pages](https://adam-zielonka.github.io/mobx-example/)
 
 ## How to use mobx
 
